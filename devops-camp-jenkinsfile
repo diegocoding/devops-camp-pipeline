@@ -49,7 +49,7 @@ pipeline {
             //TODO("Lab 4 - Artifact Management"): clean local docker app image
             post {
                 always {
-                    echo "Clean local ./app/Dockerfile image"
+                    echo "Clean local $APP_IMAGE_NAME image"
                     script {
                         try {
                             sh 'docker rmi $APP_IMAGE_NAME-$COMMIT_HASH:latest'
