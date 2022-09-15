@@ -7,7 +7,9 @@ pipeline {
         PIPELINE_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         HARBOR_REGISTRY = 'harbor.dev.afsmtddso.com'
         HARBOR_PROJECT = 'dhagans-harbor-project'
+        APP_IMAGE_NAME = 'app'
         DB_IMAGE_NAME = 'db'
+    }
     }
     stages {
         //TODO: add stages to pipeline
@@ -49,7 +51,7 @@ pipeline {
                   post {
                       //TODO: clean local docker images
                       always {
-                          echo "Clean local $DB_IMAGE_NAME image"
+                          echo "Clean local ./db/Dockerfile image"
                           script {
                               try {
                                   sh 'docker rmi $DB_IMAGE_NAME-$COMMIT_HASH:latest'
